@@ -3,7 +3,7 @@
 
   <h1>Tossakan AI — Releases</h1>
 
-  <p><strong>Collaborative AI teamwork — available from a web browser and a terminal.</strong></p>
+  <p><strong>Collaborative AI teamwork — available from a web browser.</strong></p>
 
   <p>
     <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-5b8cff?style=flat-square" />
@@ -91,12 +91,11 @@ irm https://github.com/IAM-SuperBoy/tossakan-ai-releases/releases/latest/downloa
 
 Tossakan turns an AI assistant into a **shared team resource** instead of a single-player tool.
 A central service holds the credentials and the project context; a team connects to it through a
-**web app in the browser** (no install needed) or a **terminal-based client** — either way, a
-whole group — engineers, product managers, and other business stakeholders alike — sees the
-**same** conversation, the **same** list of work in progress, and the **same** AI output as it
-happens. A stakeholder doesn't need to read code or open a terminal to follow a decision, ask a
-question, or steer scope — they read the same shared conversation a developer is already working
-in, from whichever way they prefer to connect.
+**web app in the browser** — no install needed. A whole group — engineers, product managers, and
+other business stakeholders alike — sees the **same** conversation, the **same** list of work in
+progress, and the **same** AI output as it happens. A stakeholder doesn't need to read code to
+follow a decision, ask a question, or steer scope — they read the same shared conversation a
+developer is already working in, from the same browser tab.
 
 > **The single biggest benefit:** an AI assistant stops being a private, single-player tool and
 > becomes a shared team resource — visible, joinable, and auditable by the whole team, not just
@@ -104,7 +103,7 @@ in, from whichever way they prefer to connect.
 
 ## How a request flows
 
-1. A developer or stakeholder sends a request in a shared channel (from the browser or the terminal).
+1. A developer or stakeholder sends a request in a shared channel, from the browser.
 2. The shared agent service picks it up — everyone in the channel sees the same conversation.
 3. Complex work is captured as a **plan** made of steps with explicit dependencies.
 4. Independent steps (or long research) can run as **isolated helper tasks** so they never block
@@ -156,14 +155,13 @@ Tossakan runs in two modes — pick the one that matches how much of the "collab
 |---|---|---|
 | Feels like | A regular coding agent — just you | A regular coding agent by default — becomes a shared team resource once you invite others |
 | Who sees the conversation | Only you | Only you, until you invite others into that channel — then everyone invited, in real time |
-| Access | Terminal or browser (browser preferred) | Terminal or browser, from anywhere (browser preferred) |
+| Access | Web browser | Web browser, from anywhere |
 | State survives disconnect | No — tied to your local session | Yes — the server keeps running and keeps the record |
 | Best for | Solo experimentation, personal workflow | Fully collaborative AI teamwork across a whole team |
 
 Installing locally is the fastest way to try Tossakan the same way you'd try any coding agent.
 Installing on a server unlocks the full collaborative model described in this README — a channel
-you can invite the whole team, technical or not, into to watch and join from a browser or a
-terminal.
+you can invite the whole team, technical or not, into to watch and join from a browser.
 
 ### Why server mode's persistence matters
 
@@ -180,10 +178,8 @@ terminal.
 ```mermaid
 flowchart TB
     WEB("🌐 Web app<br/>runs in a browser")
-    TERM("⌨️ Terminal app<br/>runs in a terminal")
 
     WEB <-->|"connect / disconnect, any time"| SVC
-    TERM <-->|"connect / disconnect, any time"| SVC
 
     subgraph SVC["Agent server — always on, keeps running and keeps the record"]
         direction TB
@@ -200,7 +196,7 @@ flowchart TB
     classDef record fill:#c9a6ff,stroke:#8a5fd1,color:#2b0a4d,rx:20,ry:20
     classDef zone fill:#f5f7ff,stroke:#5b8cff,color:#1a2a5e
 
-    class WEB,TERM client
+    class WEB client
     class LOCAL local
     class SHARED shared
     class REC record
@@ -208,9 +204,9 @@ flowchart TB
 ```
 
 Whether the agent runs as a **local server** on your own machine or a **shared server** deployed
-centrally for the team, the same client apps (browser or terminal) connect to it the same way —
-only who else can join differs. Either way, the server is the thing that keeps a submitted task
-running and keeps the durable record, not the client.
+centrally for the team, the same web app connects to it the same way — only who else can join
+differs. Either way, the server is the thing that keeps a submitted task running and keeps the
+durable record, not the client.
 
 Everything a client shows is a **view** onto state that actually lives in the server zone. A
 user can disconnect the moment a task is submitted and reconnect later — from the same client or
@@ -225,7 +221,6 @@ the server zone, which stays available to look back on.
 | | |
 |---|---|
 | 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. See [Project → Channel → Topic](#project--channel--topic) below. |
-| 🌐💻 **Two ways to connect** | The same service backs a browser-based web app and a terminal client — pick whichever fits; history is identical either way. |
 | 🧩 **Sub-agents & delegation** | Delegate a piece of work to a sub-agent that runs it separately — long research or a big task never blocks or crowds out the main conversation. |
 | 🗂️ **Trackable plans & tasks** | Work is captured as a plan made of tracked tasks with explicit dependencies (todo → in progress → done) — independent tasks run in parallel, dependent ones wait. |
 | 🤖 **Choice of AI models** | Anthropic (Claude) · OpenAI (GPT) · Google (Gemini) · Amazon Bedrock (incl. Bedrock Mantle) · Microsoft Azure OpenAI · DeepSeek · Meta (Muse Spark) · GitHub Copilot · self-hosted/local (Ollama). |
@@ -262,5 +257,5 @@ trail of AI actions.
 ---
 
 <div align="center">
-  <sub>Tossakan AI — collaborative AI, available from both a web browser and a terminal.</sub>
+  <sub>Tossakan AI — collaborative AI, available from a web browser.</sub>
 </div>
