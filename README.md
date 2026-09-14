@@ -153,6 +153,16 @@ Installing locally is the fastest way to try Tossakan the same way you'd try any
 Installing on a server unlocks the full collaborative model described in this README — a shared
 channel the whole team, technical or not, can watch and join from a browser or a terminal.
 
+### Why server mode's persistence matters
+
+| Benefit | What it means in practice |
+|---|---|
+| 🔌 **Disconnect anytime, work keeps going** | Close your laptop or lose your connection mid-task — the agent keeps running on the server. Reconnect later (same client or a different one) and the finished result is waiting for you. |
+| 🔁 **Server restarts don't lose your place** | If the server process itself stops and comes back, in-flight plans and tasks are automatically picked back up — you don't have to remember or re-explain where you left off. |
+| 🧑‍🤝‍🧑 **One shared source of truth** | Every teammate reconnecting sees the exact same conversation and results — nobody is stuck with a stale local copy or has to re-ask what happened while they were away. |
+| 🕵️ **Nothing is lost to a cleared screen** | Clearing what a client displays only trims the *view* — the durable record on the server is untouched and still there to look back on. |
+| 📈 **A growing, searchable history** | Because the record lives on the server rather than in any one person's session, it accumulates into a full project history instead of resetting every time someone closes their app. |
+
 ## Architecture — what lives on the server vs. what you access from a client
 
 ```mermaid
