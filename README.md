@@ -58,6 +58,13 @@ command — the lifecycle script installed alongside the binaries:
 ~/.local/share/tossakan/tossakan-agent.sh start
 ```
 
+By default `start` blocks your terminal (Ctrl+C to stop) — pass `-d`/`--daemon` to run it in
+the background and get your terminal back immediately:
+
+```bash
+~/.local/share/tossakan/tossakan-agent.sh start -d
+```
+
 Open your browser to the URL printed on start to use the web UI.
 
 Manage the running stack with:
@@ -65,13 +72,20 @@ Manage the running stack with:
 ```bash
 ~/.local/share/tossakan/tossakan-agent.sh status    # check what's running
 ~/.local/share/tossakan/tossakan-agent.sh stop      # stop everything
-~/.local/share/tossakan/tossakan-agent.sh resume    # stop then start (restart)
+~/.local/share/tossakan/tossakan-agent.sh resume    # stop then start (blocks; add -d to not block)
 ```
 
 ### Windows PowerShell
 
 ```powershell
 & "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" start
+```
+
+By default `start` blocks your console (Ctrl+C to stop) — pass `-Daemon` (or `-d`) to run it
+in the background and get your console back immediately:
+
+```powershell
+& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" start -Daemon
 ```
 
 ```powershell
