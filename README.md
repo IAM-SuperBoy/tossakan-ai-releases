@@ -137,6 +137,49 @@ separate hidden layer — when you switch to a topic, you are switching the acti
 channel is working on. Shared memory follows this same hierarchy too, scoped from narrowest to
 broadest: topic (idea) → channel → project → global.
 
+## Where to run it
+
+Tossakan runs in two modes — pick the one that matches how much of the "collaborative" story you want:
+
+| | **Local** (on your own machine) | **Server** (deployed centrally) |
+|---|---|---|
+| Feels like | A regular coding agent — just you | A shared team resource everyone connects to |
+| Who sees the conversation | Only you | The whole team, in real time |
+| Access | Terminal client only | Terminal client **and** web browser, from anywhere |
+| State survives disconnect | No — tied to your local session | Yes — the server keeps running and keeps the record |
+| Best for | Solo experimentation, personal workflow | Fully collaborative AI teamwork across a whole team |
+
+Installing locally is the fastest way to try Tossakan the same way you'd try any coding agent.
+Installing on a server unlocks the full collaborative model described in this README — a shared
+channel the whole team, technical or not, can watch and join from a browser or a terminal.
+
+## Architecture — what lives on the server vs. what you access from a client
+
+```mermaid
+flowchart LR
+    subgraph CLIENT["Client zone — you can close this anytime"]
+        direction TB
+        WEB["🌐 Web app<br/>runs in a browser<br/>no install needed"]
+        TERM["⌨️ Terminal app<br/>runs in a terminal<br/>for developers"]
+        FUTURE["📱 Future clients<br/>same access rules<br/>would apply"]
+    end
+
+    subgraph SERVER["Server zone — always on, keeps running and keeps the record"]
+        direction LR
+        SVC["🖥️ Shared agent service<br/>keeps a submitted task running<br/>even after every client disconnects"]
+        REC["🗄️ Durable channel record<br/>conversation, tasks, and results<br/>kept independently of any client"]
+        SVC --> REC
+    end
+
+    CLIENT <-->|"connect / disconnect, any time"| SERVER
+```
+
+Everything a client shows is a **view** onto state that actually lives in the server zone. A
+user can disconnect the moment a task is submitted and reconnect later — from the same client or
+a different one — to see the finished result. Clearing the visible conversation (starting fresh
+context) only trims what a client shows going forward — it does not touch the durable record in
+the server zone, which stays available to look back on.
+
 ## Core building blocks
 
 ### Collaboration
@@ -153,6 +196,7 @@ broadest: topic (idea) → channel → project → global.
 | 🧠 **Shared memory** | Facts saved at four nested levels (topic → channel → project → global), narrowest match wins. |
 | 🕓 **Full historical record** | Every message, decision, and AI action is a persistent, searchable record — not a disappearing chat. |
 | 🌍 **Multi-language support** | Works in any language you write in — the AI's response language follows whichever LLM/model is active, since language handling varies model to model. |
+| 🔐 **Google & GitHub SSO** | Sign in with your existing Google or GitHub account — no separate credentials to manage for the team. |
 
 ### Insight & tooling
 
