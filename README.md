@@ -166,7 +166,7 @@ channel the whole team, technical or not, can watch and join from a browser or a
 ## Architecture — what lives on the server vs. what you access from a client
 
 ```mermaid
-flowchart LR
+flowchart TB
     subgraph CLIENT["Client zone — you can close this anytime"]
         direction TB
         WEB["🌐 Web app<br/>runs in a browser<br/>no install needed"]
@@ -174,14 +174,14 @@ flowchart LR
         FUTURE["📱 Future clients<br/>same access rules<br/>would apply"]
     end
 
+    CLIENT <-->|"connect / disconnect, any time"| SERVER
+
     subgraph SERVER["Server zone — always on, keeps running and keeps the record"]
-        direction LR
+        direction TB
         SVC["🖥️ Shared agent service<br/>keeps a submitted task running<br/>even after every client disconnects"]
         REC["🗄️ Durable channel record<br/>conversation, tasks, and results<br/>kept independently of any client"]
         SVC --> REC
     end
-
-    CLIENT <-->|"connect / disconnect, any time"| SERVER
 ```
 
 Everything a client shows is a **view** onto state that actually lives in the server zone. A
