@@ -154,15 +154,16 @@ Tossakan runs in two modes — pick the one that matches how much of the "collab
 
 | | **Local** (on your own machine) | **Server** (deployed centrally) |
 |---|---|---|
-| Feels like | A regular coding agent — just you | A shared team resource everyone connects to |
-| Who sees the conversation | Only you | The whole team, in real time |
+| Feels like | A regular coding agent — just you | A regular coding agent by default — becomes a shared team resource once you invite others |
+| Who sees the conversation | Only you | Only you, until you invite others into that channel — then everyone invited, in real time |
 | Access | Terminal client only | Terminal client **and** web browser, from anywhere |
 | State survives disconnect | No — tied to your local session | Yes — the server keeps running and keeps the record |
 | Best for | Solo experimentation, personal workflow | Fully collaborative AI teamwork across a whole team |
 
 Installing locally is the fastest way to try Tossakan the same way you'd try any coding agent.
-Installing on a server unlocks the full collaborative model described in this README — a shared
-channel the whole team, technical or not, can watch and join from a browser or a terminal.
+Installing on a server unlocks the full collaborative model described in this README — a channel
+you can invite the whole team, technical or not, into to watch and join from a browser or a
+terminal.
 
 ### Why server mode's persistence matters
 
