@@ -156,7 +156,7 @@ Tossakan runs in two modes — pick the one that matches how much of the "collab
 |---|---|---|
 | Feels like | A regular coding agent — just you | A regular coding agent by default — becomes a shared team resource once you invite others |
 | Who sees the conversation | Only you | Only you, until you invite others into that channel — then everyone invited, in real time |
-| Access | Terminal client only | Terminal client **and** web browser, from anywhere |
+| Access | Terminal or browser (browser preferred) | Terminal or browser, from anywhere (browser preferred) |
 | State survives disconnect | No — tied to your local session | Yes — the server keeps running and keeps the record |
 | Best for | Solo experimentation, personal workflow | Fully collaborative AI teamwork across a whole team |
 
