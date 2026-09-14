@@ -47,6 +47,43 @@ gh release download latest --repo IAM-SuperBoy/tossakan-ai-releases -p 'install.
 irm https://github.com/IAM-SuperBoy/tossakan-ai-releases/releases/latest/download/install.ps1 | iex
 ```
 
+## Run
+
+Once installed, start the whole stack (agent + web UI + browser-worker) with a single
+command — the lifecycle script installed alongside the binaries:
+
+### macOS / Linux
+
+```bash
+~/.local/share/tossakan/tossakan-agent.sh start
+```
+
+Open your browser to the URL printed on start to use the web UI.
+
+Manage the running stack with:
+
+```bash
+~/.local/share/tossakan/tossakan-agent.sh status    # check what's running
+~/.local/share/tossakan/tossakan-agent.sh stop      # stop everything
+~/.local/share/tossakan/tossakan-agent.sh resume    # stop then start (restart)
+```
+
+### Windows PowerShell
+
+```powershell
+& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" start
+```
+
+```powershell
+& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" status
+& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" stop
+& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" resume
+```
+
+> **Note:** the web UI (Next.js + browser-worker) requires Node.js on your machine. If you
+> installed mux only (option 1 during install), there is no web stack to run — use the
+> terminal binary directly instead.
+
 ## Update
 
 Re-run the install command to update to the latest release.
