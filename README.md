@@ -178,22 +178,26 @@ channel the whole team, technical or not, can watch and join from a browser or a
 
 ```mermaid
 flowchart TB
-    subgraph CLIENT["Client zone — you can close this anytime"]
-        direction TB
-        WEB["🌐 Web app<br/>runs in a browser<br/>no install needed"]
-        TERM["⌨️ Terminal app<br/>runs in a terminal<br/>for developers"]
-        FUTURE["📱 Future clients<br/>same access rules<br/>would apply"]
-    end
+    WEB["🌐 Web app<br/>runs in a browser"]
+    TERM["⌨️ Terminal app<br/>runs in a terminal"]
 
-    CLIENT <-->|"connect / disconnect, any time"| SERVER
+    WEB <-->|"connect / disconnect, any time"| SVC
+    TERM <-->|"connect / disconnect, any time"| SVC
 
-    subgraph SERVER["Server zone — always on, keeps running and keeps the record"]
+    subgraph SVC["Agent server — always on, keeps running and keeps the record"]
         direction TB
-        SVC["🖥️ Shared agent service<br/>keeps a submitted task running<br/>even after every client disconnects"]
-        REC["🗄️ Durable channel record<br/>conversation, tasks, and results<br/>kept independently of any client"]
-        SVC --> REC
+        LOCAL["💻 Local server<br/>on your own machine<br/>just you"]
+        SHARED["☁️ Shared server<br/>deployed centrally<br/>whole team connects"]
+        REC["🗄️ Durable record<br/>conversation, tasks, and results<br/>kept independently of any client"]
+        LOCAL --> REC
+        SHARED --> REC
     end
 ```
+
+Whether the agent runs as a **local server** on your own machine or a **shared server** deployed
+centrally for the team, the same client apps (browser or terminal) connect to it the same way —
+only who else can join differs. Either way, the server is the thing that keeps a submitted task
+running and keeps the durable record, not the client.
 
 Everything a client shows is a **view** onto state that actually lives in the server zone. A
 user can disconnect the moment a task is submitted and reconnect later — from the same client or
