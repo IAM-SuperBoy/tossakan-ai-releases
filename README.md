@@ -114,13 +114,36 @@ in, from whichever way they prefer to connect.
 6. The output lands back in the shared channel, visible to everyone, and becomes part of the
    durable record.
 
+## Project → Channel → Topic
+
+Work is organized in three nested levels:
+
+```
+Project                    ← the overall codebase/workspace
+└── Channel                ← a shared room the whole team watches (e.g. #general, #payments)
+    └── Topic              ← a focused side-thread inside a channel
+```
+
+- A **Project** is the outermost scope — everything below belongs to one project.
+- A **Channel** is a shared room within a project. Everyone connected to it — developers and
+  stakeholders alike — sees the same live conversation and the same list of work in progress.
+- A **Topic** is a focused side-thread *inside* a channel — a way to branch off exploratory work
+  (e.g. "try approach B") without derailing or losing the channel's main conversation.
+
+**Topic and "idea" are the same thing, two names for one level:** *Topic* is the user-facing name
+you see in the UI; *idea* is the same concept's internal/technical name (used in commands like
+`/idea <name>` to create or switch topics, and in the underlying data model). There's no
+separate hidden layer — when you switch to a topic, you are switching the active "idea" the
+channel is working on. Shared memory follows this same hierarchy too, scoped from narrowest to
+broadest: topic (idea) → channel → project → global.
+
 ## Core building blocks
 
 ### Collaboration
 
 | | |
 |---|---|
-| 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. |
+| 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. See [Project → Channel → Topic](#project--channel--topic) below. |
 | 🌐💻 **Two ways to connect** | The same service backs a browser-based web app and a terminal client — pick whichever fits; history is identical either way. |
 | 🧩 **Sub-agents & delegation** | Delegate a piece of work to a sub-agent that runs it separately — long research or a big task never blocks or crowds out the main conversation. |
 | 🗂️ **Trackable plans & tasks** | Work is captured as a plan made of tracked tasks with explicit dependencies (todo → in progress → done) — independent tasks run in parallel, dependent ones wait. |
