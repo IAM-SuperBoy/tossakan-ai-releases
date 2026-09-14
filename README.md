@@ -3,7 +3,7 @@
 
   <h1>Tossakan AI — Releases</h1>
 
-  <p><strong>Same idea. Same room. Everyone in sync.</strong></p>
+  <p><strong>Same idea. Same room. Same tool. Everyone in sync.</strong></p>
 
   <p>
     <img alt="Platform" src="https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-5b8cff?style=flat-square" />
@@ -257,5 +257,5 @@ trail of AI actions.
 ---
 
 <div align="center">
-  <sub>Tossakan AI — same idea, same room, everyone in sync.</sub>
+  <sub>Tossakan AI — same idea, same room, same tool, everyone in sync.</sub>
 </div>
