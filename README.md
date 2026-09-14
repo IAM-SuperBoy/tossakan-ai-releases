@@ -21,24 +21,6 @@
 > **this repository's own files** (this README + assets), **not** the application's source
 > code. Safe to ignore.
 
-## What is Tossakan?
-
-Tossakan turns an AI assistant into a **shared team resource** instead of a single-player tool.
-Work happens inside a channel the whole team — developers and non-technical stakeholders alike —
-can watch, join, and pick up from, reachable from either a **web browser** or a **terminal**.
-
-| | |
-|---|---|
-| 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. |
-| 🌐💻 **Two ways to connect** | The same service backs a browser-based web app and a terminal client — pick whichever fits; history is identical either way. |
-| 🧩 **Isolated helper tasks** | Long research or a big piece of work runs as its own isolated task so it never crowds out the main conversation. |
-| 🗂️ **Dependency-aware plans** | Work is captured as a plan of steps with explicit dependencies — independent steps run in parallel, dependent steps wait. |
-| 🤖 **Choice of AI models** | Anthropic (Claude) · OpenAI (GPT) · Google (Gemini) · Amazon Bedrock · Microsoft Azure OpenAI · DeepSeek · Meta · self-hosted/local (Ollama). |
-| 🛠️ **Real tools, not just chat** | The AI edits files, tracks tickets, checks in code, sends team messages, and browses the web — not just suggestions. |
-| 📖 **Reusable playbooks** | Named, repeatable playbooks for recurring work (planning, reviewing, looking things up). |
-| 🧠 **Shared memory** | Facts saved at four nested levels (topic → channel → project → global), narrowest match wins. |
-| 🕓 **Full historical record** | Every message, decision, and AI action is a persistent, searchable record — not a disappearing chat. |
-
 ## Install
 
 ### macOS / Linux
@@ -102,6 +84,64 @@ irm https://github.com/IAM-SuperBoy/tossakan-ai-releases/releases/latest/downloa
 | macOS | Apple Silicon (arm64) |
 | Linux | x86_64, arm64 |
 | Windows | x86_64, arm64 |
+
+---
+
+## What is Tossakan?
+
+Tossakan turns an AI assistant into a **shared team resource** instead of a single-player tool.
+A central service holds the credentials and the project context; a team connects to it through a
+**web app in the browser** (no install needed) or a **terminal-based client** — either way, a
+whole group — engineers, product managers, and other business stakeholders alike — sees the
+**same** conversation, the **same** list of work in progress, and the **same** AI output as it
+happens. A stakeholder doesn't need to read code or open a terminal to follow a decision, ask a
+question, or steer scope — they read the same shared conversation a developer is already working
+in, from whichever way they prefer to connect.
+
+> **The single biggest benefit:** an AI assistant stops being a private, single-player tool and
+> becomes a shared team resource — visible, joinable, and auditable by the whole team, not just
+> the person typing.
+
+## How a request flows
+
+1. A developer or stakeholder sends a request in a shared channel (from the browser or the terminal).
+2. The shared agent service picks it up — everyone in the channel sees the same conversation.
+3. Complex work is captured as a **plan** made of steps with explicit dependencies.
+4. Independent steps (or long research) can run as **isolated helper tasks** so they never block
+   or crowd out the main conversation.
+5. The AI uses real tools — editing files, tracking tickets, checking in code, messaging the
+   team, browsing the web — against a choice of AI models.
+6. The output lands back in the shared channel, visible to everyone, and becomes part of the
+   durable record.
+
+## Core building blocks
+
+| | |
+|---|---|
+| 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. |
+| 🌐💻 **Two ways to connect** | The same service backs a browser-based web app and a terminal client — pick whichever fits; history is identical either way. |
+| 🧩 **Isolated helper tasks** | Long research or a big piece of work runs as its own isolated task so it never crowds out the main conversation. |
+| 🗂️ **Dependency-aware plans** | Work is captured as a plan of steps with explicit dependencies — independent steps run in parallel, dependent steps wait. |
+| 🤖 **Choice of AI models** | Anthropic (Claude) · OpenAI (GPT) · Google (Gemini) · Amazon Bedrock · Microsoft Azure OpenAI · DeepSeek · Meta (Muse Spark) · self-hosted/local (Ollama). |
+| 🛠️ **Real tools, not just chat** | The AI edits files, tracks tickets, checks in code, sends team messages, and browses the web — not just suggestions. |
+| 📖 **Reusable playbooks** | Named, repeatable playbooks for recurring work (planning, reviewing, looking things up). |
+| 🧠 **Shared memory** | Facts saved at four nested levels (topic → channel → project → global), narrowest match wins. |
+| 🕓 **Full historical record** | Every message, decision, and AI action is a persistent, searchable record — not a disappearing chat. |
+
+## Who sees what
+
+| Role | What they see |
+|---|---|
+| **Everyone in the channel** | The same live conversation, plan progress, and AI output — regardless of how they connect. |
+| **Org admin** | Full usage logs and conversation history across the organization. |
+| **Helper tasks** | Run isolated from the main conversation — their detailed work doesn't clutter the shared thread, only the result does. |
+| **The AI** | The same shared project context and credentials every team member is already working against — no separate, siloed setup per person. |
+
+## Durable record
+
+Every message, decision, and AI action is kept as a persistent record per channel — not an
+ephemeral chat session. Planned ahead: semantic search over past discussion, and a full audit
+trail of AI actions.
 
 ---
 
