@@ -178,20 +178,32 @@ channel the whole team, technical or not, can watch and join from a browser or a
 
 ```mermaid
 flowchart TB
-    WEB["🌐 Web app<br/>runs in a browser"]
-    TERM["⌨️ Terminal app<br/>runs in a terminal"]
+    WEB("🌐 Web app<br/>runs in a browser")
+    TERM("⌨️ Terminal app<br/>runs in a terminal")
 
     WEB <-->|"connect / disconnect, any time"| SVC
     TERM <-->|"connect / disconnect, any time"| SVC
 
     subgraph SVC["Agent server — always on, keeps running and keeps the record"]
         direction TB
-        LOCAL["💻 Local server<br/>on your own machine<br/>just you"]
-        SHARED["☁️ Shared server<br/>deployed centrally<br/>whole team connects"]
-        REC["🗄️ Durable record<br/>conversation, tasks, and results<br/>kept independently of any client"]
+        LOCAL("💻 Local server<br/>on your own machine<br/>just you")
+        SHARED("☁️ Shared server<br/>deployed centrally<br/>whole team connects")
+        REC("🗄️ Durable record<br/>conversation, tasks, and results<br/>kept independently of any client")
         LOCAL --> REC
         SHARED --> REC
     end
+
+    classDef client fill:#5b8cff,stroke:#3a5fd1,color:#ffffff,rx:20,ry:20
+    classDef local fill:#7ee3c3,stroke:#3fae8e,color:#0a3d31,rx:20,ry:20
+    classDef shared fill:#ffb86b,stroke:#d1873a,color:#3d2405,rx:20,ry:20
+    classDef record fill:#c9a6ff,stroke:#8a5fd1,color:#2b0a4d,rx:20,ry:20
+    classDef zone fill:#f5f7ff,stroke:#5b8cff,color:#1a2a5e
+
+    class WEB,TERM client
+    class LOCAL local
+    class SHARED shared
+    class REC record
+    class SVC zone
 ```
 
 Whether the agent runs as a **local server** on your own machine or a **shared server** deployed
