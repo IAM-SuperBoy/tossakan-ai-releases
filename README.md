@@ -116,25 +116,35 @@ in, from whichever way they prefer to connect.
 
 ## Core building blocks
 
+### Collaboration
+
 | | |
 |---|---|
 | 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. |
 | 🌐💻 **Two ways to connect** | The same service backs a browser-based web app and a terminal client — pick whichever fits; history is identical either way. |
-| 🧩 **Isolated helper tasks** | Long research or a big piece of work runs as its own isolated task so it never crowds out the main conversation. |
-| 🗂️ **Dependency-aware plans** | Work is captured as a plan of steps with explicit dependencies — independent steps run in parallel, dependent steps wait. |
+| 🧩 **Sub-agents & delegation** | Delegate a piece of work to a sub-agent that runs it separately — long research or a big task never blocks or crowds out the main conversation. |
+| 🗂️ **Trackable plans & tasks** | Work is captured as a plan made of tracked tasks with explicit dependencies (todo → in progress → done) — independent tasks run in parallel, dependent ones wait. |
 | 🤖 **Choice of AI models** | Anthropic (Claude) · OpenAI (GPT) · Google (Gemini) · Amazon Bedrock · Microsoft Azure OpenAI · DeepSeek · Meta (Muse Spark) · self-hosted/local (Ollama). |
 | 🛠️ **Real tools, not just chat** | The AI edits files, tracks tickets, checks in code, sends team messages, and browses the web — not just suggestions. |
 | 📖 **Reusable playbooks** | Named, repeatable playbooks for recurring work (planning, reviewing, looking things up). |
 | 🧠 **Shared memory** | Facts saved at four nested levels (topic → channel → project → global), narrowest match wins. |
 | 🕓 **Full historical record** | Every message, decision, and AI action is a persistent, searchable record — not a disappearing chat. |
 
+### Insight & tooling
+
+| | |
+|---|---|
+| 📊 **Usage stats** | Built-in stats on activity and AI usage across the channel — see what's happening at a glance. |
+| 💰 **Per-person cost allocation** | Cost is broken down and attributed to each individual, not just a single team-wide total. |
+| 🗺️ **Built-in code graph** | Indexes the codebase for structural lookups, and keeps the index updated as the code changes — no separate indexing step to remember. |
+
 ## Who sees what
 
 | Role | What they see |
 |---|---|
-| **Everyone in the channel** | The same live conversation, plan progress, and AI output — regardless of how they connect. |
-| **Org admin** | Full usage logs and conversation history across the organization. |
-| **Helper tasks** | Run isolated from the main conversation — their detailed work doesn't clutter the shared thread, only the result does. |
+| **Everyone in the channel** | The same live conversation, plan/task progress, and AI output — regardless of how they connect. |
+| **Org admin** | Full usage logs and conversation history across the organization, including per-person stats and cost allocation. |
+| **Sub-agents** | Run isolated from the main conversation — their detailed work doesn't clutter the shared thread, only the result does. |
 | **The AI** | The same shared project context and credentials every team member is already working against — no separate, siloed setup per person. |
 
 ## Durable record
