@@ -137,6 +137,17 @@ separate hidden layer — when you switch to a topic, you are switching the acti
 channel is working on. Shared memory follows this same hierarchy too, scoped from narrowest to
 broadest: topic (idea) → channel → project → global.
 
+### Your own space, invite others in
+
+By default, each user gets their **own channel** — a personal space to work in. When something
+important comes up that needs more than one person, you can **invite anyone into your channel**
+to work on it together — the same shared conversation, plan, and results everyone in that
+channel already sees. There's no separate "shared mode" to switch into: a personal channel and a
+team channel are the same concept, just with a different guest list.
+
+> **Coming soon:** fine-grained **permissions** for who can do what inside a shared channel — this
+> is on the roadmap and not yet available.
+
 ## Where to run it
 
 Tossakan runs in two modes — pick the one that matches how much of the "collaborative" story you want:
