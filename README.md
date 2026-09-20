@@ -27,7 +27,7 @@
 
 **Option A — GitHub CLI:**
 ```bash
-gh release download latest --repo IAM-SuperBoy/tossakan-ai-releases -p 'install.sh' --output - | sh
+gh release download latest --repo IAM-SuperBoy/tossakan-ai-releases -p 'install.sh' --output - | sh -s -- gh
 ```
 
 **Option B — curl:**
@@ -39,7 +39,7 @@ curl -fsSL https://github.com/IAM-SuperBoy/tossakan-ai-releases/releases/latest/
 
 **Option A — GitHub CLI:**
 ```powershell
-gh release download latest --repo IAM-SuperBoy/tossakan-ai-releases -p 'install.ps1' --output install.ps1; .\install.ps1
+gh release download latest --repo IAM-SuperBoy/tossakan-ai-releases -p 'install.ps1' --output install.ps1; .\install.ps1 -Tool gh
 ```
 
 **Option B — irm:**
@@ -55,14 +55,14 @@ command — the lifecycle script installed alongside the binaries:
 ### macOS / Linux
 
 ```bash
-~/.local/share/tossakan/tossakan-agent.sh start
+~/.local/share/tossakan-releases/tossakan.sh start
 ```
 
 By default `start` blocks your terminal (Ctrl+C to stop) — pass `-d`/`--daemon` to run it in
 the background and get your terminal back immediately:
 
 ```bash
-~/.local/share/tossakan/tossakan-agent.sh start -d
+~/.local/share/tossakan-releases/tossakan.sh start -d
 ```
 
 Open your browser to the URL printed on start to use the web UI.
@@ -70,28 +70,28 @@ Open your browser to the URL printed on start to use the web UI.
 Manage the running stack with:
 
 ```bash
-~/.local/share/tossakan/tossakan-agent.sh status    # check what's running
-~/.local/share/tossakan/tossakan-agent.sh stop      # stop everything
-~/.local/share/tossakan/tossakan-agent.sh resume    # stop then start (blocks; add -d to not block)
+~/.local/share/tossakan-releases/tossakan.sh status    # check what's running
+~/.local/share/tossakan-releases/tossakan.sh stop      # stop everything
+~/.local/share/tossakan-releases/tossakan.sh resume    # stop then start (blocks; add -d to not block)
 ```
 
 ### Windows PowerShell
 
 ```powershell
-& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" start
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" start
 ```
 
 By default `start` blocks your console (Ctrl+C to stop) — pass `-Daemon` (or `-d`) to run it
 in the background and get your console back immediately:
 
 ```powershell
-& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" start -Daemon
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" start -Daemon
 ```
 
 ```powershell
-& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" status
-& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" stop
-& "$env:USERPROFILE\.local\share\tossakan\tossakan-agent.ps1" resume
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" status
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" stop
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" resume
 ```
 
 > **Note:** the web UI (Next.js + browser-worker) requires Node.js on your machine. If you
@@ -100,9 +100,45 @@ in the background and get your console back immediately:
 
 ## Update
 
-Re-run the install command to update to the latest release.
+To update to the latest release, run `update` using the lifecycle script already on disk:
+
+### macOS / Linux
+
+```bash
+~/.local/share/tossakan-releases/tossakan.sh update
+```
+
+Pass `-y`/`--yes` to skip the confirmation prompt. `tossakan.sh update` automatically remembers whether you originally installed using `curl` or `gh`, and downloads from the correct release repository. You can also explicitly override them if needed (e.g. `tossakan.sh update gh`).
+
+### Windows PowerShell
+
+```powershell
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" update
+```
+
+Alternatively, you can always re-run the original install command above to update.
 
 ## Uninstall
+
+### If you installed the web stack (chat + agent)
+
+`tossakan.sh` (or `tossakan.ps1` on Windows) is already on disk under
+`~/.local/share/tossakan-releases/` — no download needed:
+
+```bash
+~/.local/share/tossakan-releases/tossakan.sh uninstall
+```
+
+```powershell
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" uninstall
+```
+
+Both stop the running web stack first, then remove the release install and the PATH/completion
+entries the installer added. Pass `-y`/`-Yes` to skip the confirmation prompt (e.g. in CI).
+
+### If `tossakan.sh`/`tossakan.ps1` is missing or damaged
+
+Fall back to downloading the standalone uninstaller:
 
 ### macOS / Linux
 
