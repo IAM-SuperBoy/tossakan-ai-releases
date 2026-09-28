@@ -14,13 +14,6 @@
 
 ---
 
-> [!NOTE]
-> This repository ships **release binaries only**. The application source code lives in a
-> separate private repository. GitHub automatically attaches **"Source code (zip)"** and
-> **"Source code (tar.gz)"** links to every release — those are auto-generated snapshots of
-> **this repository's own files** (this README + assets), **not** the application's source
-> code. Safe to ignore.
-
 ## Install
 
 ### macOS / Linux
@@ -168,7 +161,7 @@ irm https://github.com/IAM-SuperBoy/tossakan-ai-releases/releases/latest/downloa
 
 | OS | Architecture |
 |---|---|
-| macOS | Apple Silicon (arm64) |
+| macOS | Apple Silicon (arm64), Intel (x86_64) |
 | Linux | x86_64, arm64 |
 | Windows | x86_64, arm64 |
 
@@ -216,23 +209,8 @@ Project                    ← the overall codebase/workspace
 - A **Topic** is a focused side-thread *inside* a channel — a way to branch off exploratory work
   (e.g. "try approach B") without derailing or losing the channel's main conversation.
 
-**Topic and "idea" are the same thing, two names for one level:** *Topic* is the user-facing name
-you see in the UI; *idea* is the same concept's internal/technical name (used in commands like
-`/idea <name>` to create or switch topics, and in the underlying data model). There's no
-separate hidden layer — when you switch to a topic, you are switching the active "idea" the
-channel is working on. Shared memory follows this same hierarchy too, scoped from narrowest to
-broadest: topic (idea) → channel → project → global.
-
-### Your own space, invite others in
-
-By default, each user gets their **own channel** — a personal space to work in. When something
-important comes up that needs more than one person, you can **invite anyone into your channel**
-to work on it together — the same shared conversation, plan, and results everyone in that
-channel already sees. There's no separate "shared mode" to switch into: a personal channel and a
-team channel are the same concept, just with a different guest list.
-
-> **Coming soon:** fine-grained **permissions** for who can do what inside a shared channel — this
-> is on the roadmap and not yet available.
+You can create or switch topics with the `/idea <name>` command. Shared memory follows this same
+hierarchy too, scoped from narrowest to broadest: topic → channel → project → global.
 
 ## Where to run it
 
@@ -250,56 +228,66 @@ Installing locally is the fastest way to try Tossakan the same way you'd try any
 Installing on a server unlocks the full collaborative model described in this README — a channel
 you can invite the whole team, technical or not, into to watch and join from a browser.
 
-### Why server mode's persistence matters
+### Local mode capabilities — running without sign-in (`single_user` only)
+
+A local install runs under a `single_user` license, which forcibly clears any SSO/login
+configuration — there is no sign-in screen, no Google/GitHub/Okta button, and no concept of
+separate team-member accounts. Everything else the agent can do is unaffected, since sign-in
+only gates *who* can connect, not what the agent itself is capable of.
+
+Every capability in [Core building blocks](#core-building-blocks) below works exactly the same
+in local mode — channels & topics, sub-agents, plans & tasks, choice of AI models, real tools,
+playbooks, shared memory, historical record, multi-language support, and the code graph are all
+fully available. Usage stats & cost tracking are also still recorded, just attributed to a single
+implicit user rather than split per teammate.
+
+**Not available in local/single-user mode:**
+
+| | |
+|---|---|
+| 🔐 **SSO login (Google/GitHub/Okta)** | Disabled entirely — `[auth]` is cleared regardless of what's in the config file. |
+| 👥 **Multiple separate accounts** | A `single_user` license has no concept of distinct signed-in identities. |
+| 🧑‍💼 **Per-person usage/cost breakdown** | Not meaningful without separate identities — everything rolls up to the one local user. |
+
+In short: local mode gives you the full AI-agent toolset with zero setup — the only thing it
+trades away is multi-account sign-in, which matters once you want to invite teammates (that's
+what server mode + SSO is for).
+
+### Team mode capabilities — your own space, invite others in (`multi_users`/`team` only)
+
+By default, each user gets their **own channel** — a personal space to work in. When something
+important comes up that needs more than one person, you can **invite anyone into your channel**
+to work on it together — the same shared conversation, plan, and results everyone in that
+channel already sees. There's no separate "shared mode" to switch into: a personal channel and a
+team channel are the same concept, just with a different guest list.
+
+> **License note:** inviting others requires a `multi_users`/`team` license — this is what
+> unlocks separate signed-in identities (via SSO) in the first place. A `single_user` (local,
+> no sign-in) install has no concept of a second identity to invite, so this capability does not
+> apply there — see [Local mode capabilities](#local-mode-capabilities--running-without-sign-in-single_user-only)
+> above for what that mode offers instead.
+
+> **Coming soon:** fine-grained **permissions** for who can do what inside a shared channel — this
+> is on the roadmap and not yet available.
+
+### Why the durable record matters (all license modes)
+
+These benefits come from the application itself keeping a persistent record on whichever machine
+it's running on — they apply the same way whether you're on a `single_user` (local), or a
+`multi_users`/`team` install; they are not exclusive to "server mode":
 
 | Benefit | What it means in practice |
 |---|---|
-| 🔌 **Disconnect anytime, work keeps going** | Close your laptop or lose your connection mid-task — the agent keeps running on the server. Reconnect later (same client or a different one) and the finished result is waiting for you. |
-| 🔁 **Server restarts don't lose your place** | If the server process itself stops and comes back, in-flight plans and tasks are automatically picked back up — you don't have to remember or re-explain where you left off. |
-| 🧑‍🤝‍🧑 **One shared source of truth** | Every teammate reconnecting sees the exact same conversation and results — nobody is stuck with a stale local copy or has to re-ask what happened while they were away. |
-| 🕵️ **Nothing is lost to a cleared screen** | Clearing what a client displays only trims the *view* — the durable record on the server is untouched and still there to look back on. |
-| 📈 **A growing, searchable history** | Because the record lives on the server rather than in any one person's session, it accumulates into a full project history instead of resetting every time someone closes their app. |
+| 🔌 **Disconnect anytime, work keeps going** | Close your laptop or lose your connection mid-task — the agent keeps running on whichever machine hosts it. Reconnect later (same client or a different one) and the finished result is waiting for you. |
+| 🔁 **Restarts don't lose your place** | If the agent process itself stops and comes back, in-flight plans and tasks are automatically picked back up — you don't have to remember or re-explain where you left off. |
+| 🧑‍🤝‍🧑 **One shared source of truth** *(multi_users/team only)* | Every teammate reconnecting sees the exact same conversation and results — nobody is stuck with a stale local copy or has to re-ask what happened while they were away. Not applicable to `single_user`, which has no second person to share with. |
+| 🕵️ **Nothing is lost to a cleared screen** | Clearing what a client displays only trims the *view* — the durable record is untouched and still there to look back on. |
+| 📈 **A growing, searchable history** | Because the record lives with the process rather than in any one person's session, it accumulates into a full project history instead of resetting every time someone closes their app. |
 
-## Architecture — what lives on the server vs. what you access from a client
-
-```mermaid
-flowchart TB
-    WEB("🌐 Web app<br/>runs in a browser")
-
-    WEB <-->|"connect / disconnect, any time"| SVC
-
-    subgraph SVC["Agent server — always on, keeps running and keeps the record"]
-        direction TB
-        LOCAL("💻 Local server<br/>on your own machine<br/>just you")
-        SHARED("☁️ Shared server<br/>deployed centrally<br/>whole team connects")
-        REC("🗄️ Durable record<br/>conversation, tasks, and results<br/>kept independently of any client")
-        LOCAL --> REC
-        SHARED --> REC
-    end
-
-    classDef client fill:#5b8cff,stroke:#3a5fd1,color:#ffffff,rx:20,ry:20
-    classDef local fill:#7ee3c3,stroke:#3fae8e,color:#0a3d31,rx:20,ry:20
-    classDef shared fill:#ffb86b,stroke:#d1873a,color:#3d2405,rx:20,ry:20
-    classDef record fill:#c9a6ff,stroke:#8a5fd1,color:#2b0a4d,rx:20,ry:20
-    classDef zone fill:#f5f7ff,stroke:#5b8cff,color:#1a2a5e
-
-    class WEB client
-    class LOCAL local
-    class SHARED shared
-    class REC record
-    class SVC zone
-```
-
-Whether the agent runs as a **local server** on your own machine or a **shared server** deployed
-centrally for the team, the same web app connects to it the same way — only who else can join
-differs. Either way, the server is the thing that keeps a submitted task running and keeps the
-durable record, not the client.
-
-Everything a client shows is a **view** onto state that actually lives in the server zone. A
-user can disconnect the moment a task is submitted and reconnect later — from the same client or
-a different one — to see the finished result. Clearing the visible conversation (starting fresh
-context) only trims what a client shows going forward — it does not touch the durable record in
-the server zone, which stays available to look back on.
+What genuinely differs between local and server hosting is *where that always-on process lives*:
+a local install only keeps running while your own machine is on, while a server install keeps
+the process (and therefore this same durability) running independently of any one person's
+machine — see [Where to run it](#where-to-run-it) above.
 
 ## Core building blocks
 
@@ -310,20 +298,20 @@ the server zone, which stays available to look back on.
 | 🧵 **Channels & Topics** | A channel is a shared room; a topic is a focused side-thread inside it — branch off exploratory work without losing the main conversation. See [Project → Channel → Topic](#project--channel--topic) below. |
 | 🧩 **Sub-agents & delegation** | Delegate a piece of work to a sub-agent that runs it separately — long research or a big task never blocks or crowds out the main conversation. |
 | 🗂️ **Trackable plans & tasks** | Work is captured as a plan made of tracked tasks with explicit dependencies (todo → in progress → done) — independent tasks run in parallel, dependent ones wait. |
-| 🤖 **Choice of AI models** | Anthropic (Claude) · OpenAI (GPT) · Google (Gemini) · Amazon Bedrock (incl. Bedrock Mantle) · Microsoft Azure OpenAI · DeepSeek · Meta (Muse Spark) · GitHub Copilot · self-hosted/local (Ollama). |
+| 🤖 **Choice of AI models** | Anthropic (Claude) · OpenAI (GPT) · Google (Gemini) · Amazon Bedrock (incl. Bedrock Mantle) · Microsoft Azure OpenAI · Nvidia OpenAI · DeepSeek · Meta (Muse Spark) · GitHub Copilot · self-hosted/local (Ollama). |
 | 🛠️ **Real tools, not just chat** | The AI edits files, tracks tickets, checks in code, sends team messages, and browses the web — not just suggestions. |
 | 📖 **Reusable playbooks** | Named, repeatable playbooks for recurring work (planning, reviewing, looking things up). |
 | 🧠 **Shared memory** | Facts saved at four nested levels (topic → channel → project → global), narrowest match wins. |
 | 🕓 **Full historical record** | Every message, decision, and AI action is a persistent, searchable record — not a disappearing chat. |
 | 🌍 **Multi-language support** | Works in any language you write in — the AI's response language follows whichever LLM/model is active, since language handling varies model to model. |
-| 🔐 **Google & GitHub SSO** | Sign in with your existing Google or GitHub account — no separate credentials to manage for the team. |
+| 🔐 **Google/GitHub/Okta SSO** *(multi_users/team only)* | Sign in with your existing Google, GitHub, or Okta account — no separate credentials to manage for the team. |
 
 ### Insight & tooling
 
 | | |
 |---|---|
 | 📊 **Usage stats** | Built-in stats on activity and AI usage across the channel — see what's happening at a glance. |
-| 💰 **Per-person cost allocation** | Cost is broken down and attributed to each individual, not just a single team-wide total. |
+| 💰 **Per-person cost allocation** *(multi_users/team only)* | Cost is broken down and attributed to each individual, not just a single team-wide total. |
 | 🗺️ **Built-in code graph** | Indexes the codebase for structural lookups, and keeps the index updated as the code changes — no separate indexing step to remember. |
 
 ## Who sees what
@@ -346,3 +334,31 @@ trail of AI actions.
 <div align="center">
   <sub>Tossakan AI — same idea, same room, same tool, everyone in sync.</sub>
 </div>
+
+
+## Setting up an LLM provider
+
+Tossakan needs at least one LLM provider configured before it can respond. The first `start`
+launches an interactive **setup wizard** that walks you through picking providers and entering
+their credentials — it writes everything into your `~/.tossakan/tossakan.toml`, so you only do
+this once.
+You can also edit that file by hand later using the same keys shown below.
+
+| Provider | What you need | Notes |
+|---|---|---|
+| **AWS Bedrock (Converse)** | Nothing extra — uses your existing AWS credential chain (env vars, shared config profile, SSO, or an assumed role/IMDS) | Always available; no separate API key |
+| **AWS Bedrock (Anthropic-native)** | Same AWS credential chain as above | Always available; unlocks the latest Claude-specific features via Bedrock |
+| **AWS Bedrock Mantle** | Nothing required by default — auto-generates bearer tokens from your AWS credentials | Optional: `AWS_BEARER_TOKEN_BEDROCK` for a static key, `BEDROCK_MANTLE_BASE_URL` to override the endpoint, or `BEDROCK_MANTLE_ENABLED=false` to turn it off |
+| **Anthropic (direct API)** | `ANTHROPIC_API_KEY` (starts with `sk-ant-…`) | |
+| **OpenAI** | `OPENAI_API_KEY` (starts with `sk-…`) | Optional `OPENAI_BASE_URL` for a proxy/custom gateway |
+| **Google Gemini** | `GOOGLE_API_KEY` (from Google AI Studio) | |
+| **Azure OpenAI** | `AZURE_OPENAI_API_KEY` + `AZURE_OPENAI_ENDPOINT` (e.g. `https://<resource>.openai.azure.com`) | Both required |
+| **Nvidia OpenAI** | `NVIDIA_OPENAI_API_KEY` (required) + `NVIDIA_OPENAI_ENDPOINT` (optional, defaults to `https://integrate.api.nvidia.com/v1`) | API key required; endpoint optional |
+| **DeepSeek** | `DEEPSEEK_API_KEY` | Optional `DEEPSEEK_BASE_URL` for a proxy/self-hosted gateway |
+| **Muse Spark (Meta AI)** | `MUSE_SPARK_API_KEY` | Fixed endpoint (`https://api.meta.ai/v1`) |
+| **Ollama (local models)** | Nothing required | Optional `OLLAMA_BASE_URL` if your Ollama server isn't on `http://localhost:11434` |
+| **GitHub Copilot** | Sign in via the device-flow login script bundled with the release (`copilot-login.sh` / `.ps1`), which saves a `GITHUB_COPILOT_OAUTH_TOKEN` for you | No API key to paste in — it's a browser-based login; you can also set `GITHUB_COPILOT_OAUTH_TOKEN` (or the alias `COPILOT_GITHUB_TOKEN`) by hand if you already have a token |
+
+You can enable as many providers as you like at once — every configured provider shows up as a
+choice in the model picker, so switching between them (or between models from different
+providers) is just a dropdown, not a reconfiguration.
