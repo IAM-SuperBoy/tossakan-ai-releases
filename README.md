@@ -408,6 +408,38 @@ install has no second identity to invite — see
 > **Coming soon:** fine-grained **permissions** for who can do what inside a shared channel —
 > on the roadmap, not yet available.
 
+### Running multiple agent processes (optional, any license mode)
+
+By default, a single agent process keeps every live event (chat messages, `ask_user` prompts,
+pane operations, etc.) in an in-process broadcast — fine for one process serving all connected
+clients. If you need to run **more than one agent process** behind the same deployment (e.g.
+horizontal scale-out, or a load-balanced multi-instance setup), enable the optional **NATS bus
+engine** so live events fan out correctly across every process:
+
+```toml
+[bus]
+engine = "nats"
+servers = ["nats://127.0.0.1:4222"]
+```
+
+This requires running your own `nats-server` (or NATS cluster) and a build of the agent with the
+`nats` Cargo feature enabled. A few important clarifications:
+
+- **This is independent of `single_user` vs. `multi_users` licensing.** It is a deployment-topology
+  setting, not a licensed feature — either license mode can run with one process (default,
+  in-process bus) or several processes (NATS bus).
+- **Agents do not become stateless.** The durable conversation record (`message_log` in the
+  database) remains the single source of truth regardless of bus engine — NATS only relays
+  *ephemeral* live UI events (so an `ask_user` answered on one process resolves correctly on the
+  process that asked it, for example). Nothing about conversation history, plans, or tasks moves
+  into NATS; it is not a data store.
+- **Opt-in, not automatic.** Selecting `multi_users` / team licensing does **not** switch the bus
+  engine to NATS by itself — you choose it explicitly in config when your deployment actually
+  needs multiple agent processes.
+
+See the [configuration reference](../rust/crates/agent/docs/config-reference.md#bus--2-keys) for
+full `[bus]` setup steps, including installing and starting `nats-server`.
+
 ### Why the durable record matters (all license modes)
 
 These benefits come from the app keeping a persistent record on the machine that hosts the
