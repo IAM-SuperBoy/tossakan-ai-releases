@@ -585,7 +585,6 @@ the command palette, or run any of the commands below directly.
 | `/compact` | Summarize older context to free room for new work. |
 | `/permission` | Adjust tool-permission mode for this session. |
 | `/invite` | Invite teammates into the current channel. *(multi_users/team only — not on the public `single_user` download.)* |
-| `/logout` | Sign out. *(SSO / signed-in sessions; team mode.)* |
 
 > Tip: the table above is the short day-to-day set, not every command. Team-only entries simply
 > do not apply on `single_user`.
