@@ -1,7 +1,7 @@
 <div align="center">
-  <img src="assets/logo.png" alt="Product logo" width="200" height="200" />
+  <img src="assets/logo.png" alt="Tossakan logo" width="200" height="200" />
 
-  <h1>AI Agent — Releases</h1>
+  <h1>Tossakan AI — Releases</h1>
 
   <p><strong>Same idea. Same room. Same tool.</strong></p>
   <p><strong>The world's most advanced AI harness.</strong></p>
@@ -16,11 +16,11 @@
 > **This release is `single_user`.** The public download is a full solo agent harness (web UI,
 > plans, tasks, tools, A2A owner controls). It does **not** include multi-account SSO or inviting
 > separate teammates. Team / `multi_users` is a separate licensed mode — see
-> [What is this?](#what-is-this).
+> [What is Tossakan?](#what-is-tossakan).
 
 ---
 
-## Why This Agent?
+## Why Tossakan?
 
 **An AI workforce that works while you work on something else.**
 
@@ -86,14 +86,14 @@ command — the lifecycle script installed alongside the binaries:
 ### macOS / Linux
 
 ```bash
-~/.local/share/agent-releases/agent.sh start
+~/.local/share/tossakan-releases/tossakan.sh start
 ```
 
 By default `start` blocks your terminal (Ctrl+C to stop) — pass `-d`/`--daemon` to run it in
 the background and get your terminal back immediately:
 
 ```bash
-~/.local/share/agent-releases/agent.sh start -d
+~/.local/share/tossakan-releases/tossakan.sh start -d
 ```
 
 Open your browser to the URL printed on start to use the web UI.
@@ -101,28 +101,28 @@ Open your browser to the URL printed on start to use the web UI.
 Manage the running stack with:
 
 ```bash
-~/.local/share/agent-releases/agent.sh status    # check what's running
-~/.local/share/agent-releases/agent.sh stop      # stop everything
-~/.local/share/agent-releases/agent.sh resume    # stop then start (blocks; add -d to not block)
+~/.local/share/tossakan-releases/tossakan.sh status    # check what's running
+~/.local/share/tossakan-releases/tossakan.sh stop      # stop everything
+~/.local/share/tossakan-releases/tossakan.sh resume    # stop then start (blocks; add -d to not block)
 ```
 
 ### Windows PowerShell
 
 ```powershell
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" start
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" start
 ```
 
 By default `start` blocks your console (Ctrl+C to stop) — pass `-Daemon` (or `-d`) to run it
 in the background and get your console back immediately:
 
 ```powershell
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" start -Daemon
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" start -Daemon
 ```
 
 ```powershell
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" status
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" stop
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" resume
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" status
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" stop
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" resume
 ```
 
 > **Note:** the web UI (Next.js + browser-worker) requires Node.js on your machine. If you
@@ -136,38 +136,38 @@ To update to the latest release, run `update` using the lifecycle script already
 ### macOS / Linux
 
 ```bash
-~/.local/share/agent-releases/agent.sh update
+~/.local/share/tossakan-releases/tossakan.sh update
 ```
 
-Pass `-y`/`--yes` to skip the confirmation prompt. `agent.sh update` remembers whether you
+Pass `-y`/`--yes` to skip the confirmation prompt. `tossakan.sh update` remembers whether you
 originally installed with `curl` or `gh` and downloads from the matching release repository. You
-can override that choice if needed (e.g. `agent.sh update gh`).
+can override that choice if needed (e.g. `tossakan.sh update gh`).
 
 ### Windows PowerShell
 
 ```powershell
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" update
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" update
 ```
 
 Alternatively, re-run the original [install](#install) command to update.
 
 ## Uninstall
 
-`agent.sh` (or `agent.ps1` on Windows) is already on disk under
-`~/.local/share/agent-releases/` — no download needed:
+`tossakan.sh` (or `tossakan.ps1` on Windows) is already on disk under
+`~/.local/share/tossakan-releases/` — no download needed:
 
 ```bash
-~/.local/share/agent-releases/agent.sh uninstall
+~/.local/share/tossakan-releases/tossakan.sh uninstall
 ```
 
 ```powershell
-& "$env:USERPROFILE\.local\share\agent-releases\agent.ps1" uninstall
+& "$env:USERPROFILE\.local\share\tossakan-releases\tossakan.ps1" uninstall
 ```
 
 Both stop the running stack first, then remove the release install and the PATH/completion
 entries the installer added. Pass `-y`/`-Yes` to skip the confirmation prompt (e.g. in CI).
 
-### If `agent.sh`/`agent.ps1` is missing or damaged
+### If `tossakan.sh`/`tossakan.ps1` is missing or damaged
 
 Fall back to downloading the standalone uninstaller:
 
@@ -205,19 +205,19 @@ irm https://github.com/IAM-SuperBoy/tossakan-ai-releases/releases/latest/downloa
 
 ---
 
-## What is This?
+## What is Tossakan?
 
-This agent takes inspiration from mythological figures with **many faces**, and
+Tossakan is a character in the **Ramayana** and the **Ramakien** epic. He has **ten faces**, and
 each face can think and act independently, with its own personality and characteristics. We use
 this as an analogy for an **Agent Harness** in the AI world: each “face” is an independent agent
-with a specific role or capability, while **the harness as a whole** coordinates them as a single
+with a specific role or capability, while **Tossakan as a whole** coordinates them as a single
 system.
 
-In product terms, this agent is that harness: many specialized agents and views, one coordinated
+In product terms, Tossakan is that harness: many specialized agents and views, one coordinated
 system. Today it shines on software work — plans, tasks, tools, memory, and a web workspace
 ([Chat, FileView, Terminal, Browser, Plan, Task, SubAgent](#web-interface)) against a real
 project. The same model is not limited to codebases; over time it can grow into a broader
-personal assistant as well — different “faces” for different jobs, still one agent.
+personal assistant as well — different “faces” for different jobs, still one Tossakan.
 
 ### Public download (`single_user`)
 
@@ -235,7 +235,7 @@ project context; engineers, PMs, and other stakeholders open the **same** web ap
 read the code. Sections below mark team-only behavior with *(multi_users/team only)*.
 
 > 🚧 **Actively in development.** Team mode is where we're focusing real energy right now — the
-> goal is to turn this agent into the everyday, shared coding assistant a whole engineering org
+> goal is to turn Tossakan into the everyday, shared coding assistant a whole engineering org
 > relies on, not just a solo tool. We're looking for **developers** who want to help build it and
 > **investors** who want to back it. If that's you, reach out — we'd love to collaborate and get
 > this into daily use for real teams doing real work.
@@ -314,13 +314,13 @@ alone does not unlock SSO or invites on the public download.
 | Process keeps running after you leave | Only while this machine stays on | Yes — the host keeps the process and durable record |
 | Best for | Solo try-out and day-to-day personal workflow | Always-on agent; team collaboration when licensed |
 
-**Local** is the fastest way to try this agent like any other coding agent. **Server** keeps the
+**Local** is the fastest way to try Tossakan like any other coding agent. **Server** keeps the
 process (and [durable record](#durable-record)) running when your laptop sleeps. Shared rooms and
-invites are a **team-license** capability — see [What is this?](#what-is-this).
+invites are a **team-license** capability — see [What is Tossakan?](#what-is-tossakan).
 
 ## Web interface
 
-This agent is used primarily through a **web interface** in the browser. After `start`, open the
+Tossakan is used primarily through a **web interface** in the browser. After `start`, open the
 URL printed in the terminal — no separate desktop app is required for day-to-day work.
 
 In **`single_user`**, that browser session is yours alone. In **`multi_users` / team**, everyone
@@ -328,7 +328,7 @@ invited to the channel sees the same idea, channel, and agent session.
 
 ### Why web-first
 
-This agent also ships a terminal UI (TUI), and we keep it fully up-to-date — but **this release
+Tossakan also ships a terminal UI (TUI), and we keep it fully up-to-date — but **this release
 focuses on the web interface**, and that's a deliberate choice, not a gap:
 
 - 🖼️ **Richer, multi-pane UX** — Chat, FileView, Terminal, Browser, Plan, Task, and SubAgent
@@ -508,9 +508,9 @@ audit trail of AI actions.
 
 ## Setting up an LLM provider
 
-This agent needs at least one LLM provider configured before it can respond. The first `start`
+Tossakan needs at least one LLM provider configured before it can respond. The first `start`
 launches an interactive **setup wizard** that walks you through picking providers and entering
-credentials — it writes `~/.agent/agent.toml`, so you only do this once. You can edit that
+credentials — it writes `~/.tossakan/tossakan.toml`, so you only do this once. You can edit that
 file by hand later using the same keys shown below.
 
 | Provider | What you need | Notes |
@@ -591,4 +591,4 @@ the command palette, or run any of the commands below directly.
 
 ## Support
 
-For issues or questions, contact: **contact@example.com**
+For issues or questions, contact: **iam.tossakan.ai@gmail.com**
