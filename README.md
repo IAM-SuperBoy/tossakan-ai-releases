@@ -34,6 +34,8 @@
   channel, project, task, sub-task, and agent, so you always know where the spend is going.
 - ⚡ **Fast everywhere** — a modern web UI and an equally polished terminal UI, both rendered
   locally so nothing feels sluggish.
+- 🎨 **Artifacts** — `tossakan` creates, browses, edits, and exports rich HTML slide decks
+  and canvas artifacts alongside your work.
 - 🎯 **Never blocked** — kick off long-running tasks and keep working on something else; tasks
   **survive crashes, restarts, and power outages** and pick up right where they left off.
 - 🗂️ **Git-for-AI-work task orchestration** — declare dependencies once, run independent work in
@@ -357,6 +359,7 @@ The web UI is a multi-pane workspace. Core views:
 | **FileView** | Browse and open project files in the browser without leaving the session. |
 | **Terminal** | In-browser terminal attached to the workspace — run commands beside the agent. |
 | **Browser** | Embedded browser the agent (and you) can drive — open pages and verify UI changes in place. |
+| **Artifacts** | Browse, create, edit, clone, promote, and export rich HTML slide decks and canvas state. |
 | **Plan** | Structured plan for the current idea — ordered steps, dependencies, status, and progress. |
 | **Task** | Individual tasks on that plan — running, waiting, done, or blocked. |
 | **SubAgent** | Delegated sub-agents in isolation — their own transcript and status, without crowding main chat. |
